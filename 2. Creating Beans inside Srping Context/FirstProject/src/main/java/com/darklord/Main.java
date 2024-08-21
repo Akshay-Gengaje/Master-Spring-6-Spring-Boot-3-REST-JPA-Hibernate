@@ -7,8 +7,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Main {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProjectConfig.class);
-
-        Vehicle veh1 = context.getBean("audiVehicle", Vehicle.class);
+        //Vehilce 1 called with primary bean vehicle
+        Vehicle veh1 = context.getBean( Vehicle.class);
         System.out.println(veh1.getName());
         Vehicle veh2 = context.getBean("hondaVehicle", Vehicle.class);
         System.out.println(veh2.getName());
