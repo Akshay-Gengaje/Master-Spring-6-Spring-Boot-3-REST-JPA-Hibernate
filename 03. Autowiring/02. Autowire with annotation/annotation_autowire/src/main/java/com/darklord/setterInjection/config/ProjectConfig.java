@@ -1,10 +1,10 @@
-package com.darklord.configuration;
+package com.darklord.setterInjection.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = "com.darklord.beans")
-public class ProjectConfiguration {
+@ComponentScan(basePackages = "com.darklord.setterInjection")
+public class ProjectConfig {
 
 }

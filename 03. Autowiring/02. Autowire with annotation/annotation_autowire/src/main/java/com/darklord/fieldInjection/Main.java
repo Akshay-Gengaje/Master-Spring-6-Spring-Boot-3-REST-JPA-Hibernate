@@ -1,9 +1,9 @@
-package com.darklord;
+package com.darklord.fieldInjection;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.darklord.beans.Person;
-import com.darklord.configuration.ProjectConfiguration;
+import com.darklord.fieldInjection.beans.Person;
+import com.darklord.fieldInjection.configuration.ProjectConfiguration;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,6 +11,5 @@ public class Main {
         Person person = context.getBean(Person.class);
         System.out.println("Person Name : " + person.getName());
         System.out.println("Person Vehicle : " + person.getVehicle());
-
     }
 }

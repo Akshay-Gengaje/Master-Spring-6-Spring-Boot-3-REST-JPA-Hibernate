@@ -1,14 +1,16 @@
-package com.darklord.beans;
+package com.darklord.constructorInjection.beans;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class Vehicle {
+    String name = "Toyota";
 
-    private String name = "Toyota";
-
-    public Vehicle() {
-        System.out.println("Vehicle object is created");
+    public Vehicle(){
+        super();
+    }
+    public Vehicle(String name) {
+        this.name = name;
     }
 
     public String getName() {
@@ -21,7 +23,8 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle [name=" + name + "]";
+        return "Vehicle{" +
+                "name='" + name + '\'' +
+                '}';
     }
-
 }

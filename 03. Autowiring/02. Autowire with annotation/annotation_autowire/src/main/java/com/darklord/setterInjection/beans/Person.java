@@ -1,16 +1,20 @@
-package com.darklord.beans;
+package com.darklord.setterInjection.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Person {
-    private String name = "Lucy";
-    @Autowired
-    private Vehicle vehicle;
+    String name = "Lucy";
+    Vehicle vehicle;
 
     public Person() {
-        System.out.println("Person bean created..");
+        super();
+    }
+
+    public Person(String name, Vehicle vehicle) {
+        this.name = name;
+        this.vehicle = vehicle;
     }
 
     public String getName() {
@@ -25,17 +29,16 @@ public class Person {
         return vehicle;
     }
 
+    @Autowired
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
 
-    public void introduce() {
-        System.out.println("Hello, my name is " + name);
-    }
-
     @Override
     public String toString() {
-        return "Person [name=" + name + ", vehicle=" + vehicle + "]";
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", vehicle=" + vehicle +
+                '}';
     }
-
 }
