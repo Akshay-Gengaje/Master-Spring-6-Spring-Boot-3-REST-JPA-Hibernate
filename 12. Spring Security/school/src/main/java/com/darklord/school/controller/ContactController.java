@@ -1,7 +1,7 @@
-package com.eazybytes.eazyschool.controller;
+package com.darklord.school.controller;
 
-import com.eazybytes.eazyschool.model.Contact;
-import com.eazybytes.eazyschool.service.ContactService;
+import com.darklord.school.model.Contact;
+import com.darklord.school.service.ContactService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +19,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class ContactController {
 
     private final ContactService contactService;
+
 
     @Autowired
     public ContactController(ContactService contactService) {
@@ -52,7 +53,4 @@ public class ContactController {
         contactService.saveMessageDetails(contact);
         return "redirect:/contact";
     }
-
-
-
 }

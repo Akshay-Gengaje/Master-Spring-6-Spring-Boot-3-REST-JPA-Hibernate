@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SchoolApplication<school>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.darklord.school.SchoolApplication",
+            "projectName": "school",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

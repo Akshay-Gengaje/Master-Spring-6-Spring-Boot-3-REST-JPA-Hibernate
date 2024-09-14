@@ -1,6 +1,7 @@
-package com.eazybytes.eazyschool.service;
+package com.darklord.school.service;
 
-import com.eazybytes.eazyschool.model.Contact;
+
+import com.darklord.school.model.Contact;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
