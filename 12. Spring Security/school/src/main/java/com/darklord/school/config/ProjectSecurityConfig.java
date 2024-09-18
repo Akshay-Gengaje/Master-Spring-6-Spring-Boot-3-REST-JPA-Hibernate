@@ -13,8 +13,13 @@ public class ProjectSecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .anyRequest().permitAll()  // All requests are permitted without authentication
-                );
-
+                )
+        // THIS WILL DENY ALL APIS
+//        http
+//                .authorizeHttpRequests((requests) -> requests
+//                        .anyRequest().denyAll()  // All requests are permitted without authentication
+//                )
+//        ;
         return http.build();
     }
 }
