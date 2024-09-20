@@ -3,6 +3,9 @@ package com.darklord.school.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -21,14 +24,21 @@ public class ProjectSecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((request) -> request
-                        .requestMatchers("/","/home").permitAll()
-                        .requestMatchers("/holidays").permitAll()
-                        .requestMatchers("/contact").permitAll()
-                        .requestMatchers("/about").permitAll()
+                        .requestMatchers("/dashboard").authenticated()
+                        .requestMatchers("/", "/home", "/holidays", "/contact", "/about", "/login", "/assets/**").permitAll()
                         .requestMatchers("/courses").authenticated()
-                        .requestMatchers("/assets/**").permitAll()
-
-                ).formLogin(formLogin -> formLogin.permitAll());
+                ).formLogin(formLogin ->
+                        formLogin
+                                .loginPage("/login")
+                                .defaultSuccessUrl("/dashboard")
+                                .failureUrl("/login?error=true")
+                                .permitAll())
+                .logout(logout ->
+                        logout
+                                .logoutSuccessUrl("/login?logout=true")  // Fixed logout URL
+                                .invalidateHttpSession(true)
+                                .permitAll()
+                );
 
         // THIS WILL DENY ALL APIS
         /*
@@ -38,5 +48,11 @@ public class ProjectSecurityConfig {
                 );
          */
         return http.build();
+    }
+    @Bean
+    public InMemoryUserDetailsManager userDetailsManager(){
+        UserDetails user = User.withDefaultPasswordEncoder().username("user").password("12345").roles("USER").build();
+        UserDetails admin = User.withDefaultPasswordEncoder().username("admin").password("admin").roles("USER", "ADMIN").build();
+        return new InMemoryUserDetailsManager(user, admin);
     }
 }
