@@ -11,5 +11,4 @@ public class Holiday {
     public enum Type{
         FESTIVAL, FEDERAL
     }
-
 }
