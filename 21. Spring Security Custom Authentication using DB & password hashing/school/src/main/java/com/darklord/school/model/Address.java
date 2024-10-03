@@ -14,8 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class Address extends BaseEntity{
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
-    @GenericGenerator(name = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int addressId;
 
     @NotBlank(message="Address1 must not be blank")
@@ -35,6 +34,5 @@ public class Address extends BaseEntity{
     @NotBlank(message="Zip Code must not be blank")
     @Pattern(regexp="(^$|[0-9]{5})",message = "Zip Code must be 5 digits")
     private int zipCode;
-
 
 }

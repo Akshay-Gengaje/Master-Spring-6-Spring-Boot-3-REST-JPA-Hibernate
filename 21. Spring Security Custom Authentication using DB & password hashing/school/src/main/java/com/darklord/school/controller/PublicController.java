@@ -1,6 +1,7 @@
 package com.darklord.school.controller;
 
 import com.darklord.school.model.Person;
+
 import com.darklord.school.service.PersonService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -26,16 +27,17 @@ public class PublicController {
         return "register.html";
     }
 
-    @RequestMapping(value ="/createUser",method = { RequestMethod.POST})
+    @RequestMapping(value = "/createUser", method = { RequestMethod.POST })
     public String createUser(@Valid @ModelAttribute("person") Person person, Errors errors) {
-        if(errors.hasErrors()){
-            return "register.html";
+        if (errors.hasErrors()) {
+            return "register.html"; // Return the registration form with errors
         }
+        // After validation, hash the password and save the user
         boolean isSaved = personService.createNewPerson(person);
-        if(isSaved){
-            return "redirect:/login?register=true";
-        }else {
-            return "register.html";
+        if (isSaved) {
+            return "redirect:/login?register=true"; // Redirect to login on success
+        } else {
+            return "register.html"; // Return registration form if saving fails
         }
     }
 

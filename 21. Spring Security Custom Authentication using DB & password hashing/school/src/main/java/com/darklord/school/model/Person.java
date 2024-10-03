@@ -27,7 +27,7 @@ import lombok.Data;
 public class Person extends BaseEntity{
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int personId;
 
     @NotBlank(message="Name must not be blank")
@@ -57,7 +57,7 @@ public class Person extends BaseEntity{
     @Transient
     private String confirmPwd;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST, targetEntity = Roles.class)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST, targetEntity = Roles.class)
     @JoinColumn(name = "role_id", referencedColumnName = "roleId",nullable = false)
     private Roles roles;
 
