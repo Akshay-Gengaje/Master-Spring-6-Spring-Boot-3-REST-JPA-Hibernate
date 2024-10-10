@@ -75,14 +75,11 @@ public class Person extends BaseEntity{
     @JoinColumn(name="class_id", referencedColumnName = "classId")
     private Classes classes;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinTable(name = "person_courses",
             joinColumns = {
-                    @JoinColumn(name = "person_id", referencedColumnName = "personId")
-            },
+                    @JoinColumn(name = "person_id", referencedColumnName = "personId")},
             inverseJoinColumns = {
-                    @JoinColumn(name = "course_id", referencedColumnName = "courseId")
-            }
-    )
+                    @JoinColumn(name = "course_id", referencedColumnName = "courseId")})
     private Set<Courses> courses = new HashSet<>();
 }

@@ -1,7 +1,6 @@
 package com.darklord.school.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,10 +14,9 @@ public class Courses extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer courseId;
-
     private String name;
     private String fees;
 
-    @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    Set<Person> personSet = new HashSet<>();
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    private Set<Person> persons = new HashSet<>();
 }
