@@ -9,7 +9,6 @@ import com.darklord.school.repository.PersonRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +16,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -111,8 +109,11 @@ public class AdminController {
 
     @GetMapping("/displayCourses")
     public ModelAndView displayCourses(Model model){
+        //Dynamic sorting -
+        List<Courses> courses = courseRepository.findAll(Sort.by("name").ascending());
 
-        List<Courses>courses = courseRepository.findAll()   ;
+        //Static Sorting -
+                // List<Courses>courses = courseRepository.findByOrderByNameDesc();
         ModelAndView modelAndView = new ModelAndView("courses_secure.html");
         modelAndView.addObject("courses", courses);
         model.addAttribute("course", new Courses());
